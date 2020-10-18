@@ -1,0 +1,36 @@
+# BASH exercise!!
+
+## Use this file to document the commands and write the results you get.
+
+#### 1. Download the data from https://drive.google.com/open?id=1TNZiSaNmcDbZ7fglKY7lPhni3ucD5Qn3
+
+
+#### 2. How many rows does the dataset have?
+wc -l cast.csv
+
+#### 3. Change the delimiter to ";"
+sed 's/,/;/g' cast.csv > cast_new.csv
+or
+tr ',' ';' < cast.csv > cast_new.csv
+
+
+#### 4. Output the header into the separate file cast_header.csv and remove it from the data
+head -n 1 cast.csv > cast_header.csv
+sed -i '' 1d cast.csv 
+ 
+#### 5. How many movies did Pierce Brosnan play in?
+grep "Pierce Brosnan" cast.csv | wc -l
+
+#### 6. Were there more superman movies or batman movies?
+grep "Batman" cast.csv | wc -l
+grep "Superman" cast.csv | wc -l
+
+#### 7. How many roles are in this database?
+cut -d "," -f 5 cast.csv | sort | uniq -c | wc -l
+
+#### 8. What is the most ofter played role?
+cut -d "," -f 5 cast.csv | sort | uniq -c | sort -r | head -n 3
+
+#### 9. What is the most often movie name?
+cut -d "," -f 1 cast.csv | sort | uniq -c | sort -r | head -n 1
+
